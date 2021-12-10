@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->foreignId('course_id')
                 ->references('id')->on('courses')
-                ->restrictOnDelete()
+                ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->text('description')->nullable();
             $table->dateTime('date_due');

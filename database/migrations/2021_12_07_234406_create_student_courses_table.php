@@ -22,7 +22,7 @@ class CreateStudentCoursesTable extends Migration
                 ->references('id')->on('courses')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->primary(array('student_id', 'course_id'));
+            $table->primary(['student_id', 'course_id']);
         });
     }
 

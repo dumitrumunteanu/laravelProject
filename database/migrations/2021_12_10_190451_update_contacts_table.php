@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentTable extends Migration
+class UpdateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,9 @@ class CreateStudentTable extends Migration
     public function up()
     {
         DB::statement('
-            CREATE TABLE students (
-                id BIGINT UNSIGNED AUTO_INCREMENT,
-                first_name VARCHAR(50),
-                last_name VARCHAR(50),
-                PRIMARY KEY (id)
-            ) engine=innodb;
+            ALTER TABLE contacts
+                CHANGE address address_line_1 VARCHAR(50),
+                ADD address_line_2 VARCHAR(50);
         ');
     }
 
@@ -31,7 +28,9 @@ class CreateStudentTable extends Migration
     public function down()
     {
         DB::statement('
-            DROP TABLE IF EXISTS students;
+            ALTER TABLE contacts
+                CHANGE address_line_1 address VARCHAR(50),
+                DROP address_line_2;
         ');
     }
 }

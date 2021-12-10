@@ -17,8 +17,8 @@ class CreateTaskSubmissionTable extends Migration
             $table->id();
             $table->foreignId('task_id')
                 ->references('id')->on('tasks')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->foreignId('student_id')
                 ->references('id')->on('students')
                 ->cascadeOnDelete()

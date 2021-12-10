@@ -18,8 +18,9 @@ class CreateContactsTable extends Migration
                 ->references('id')->on('students')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->string('phone')->unique();
+            $table->string('phone', 50)->unique();
             $table->string('address', 50);
+            $table->primary('student_id');
         });
     }
 
