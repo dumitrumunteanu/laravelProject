@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
                 ->references('id')->on('courses')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->dateTime('date_due');
         });
     }

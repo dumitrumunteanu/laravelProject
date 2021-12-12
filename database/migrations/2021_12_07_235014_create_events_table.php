@@ -23,7 +23,6 @@ class CreateEventsTable extends Migration
             $table->dateTime('end')->nullable();
             $table->text('description')->nullable();
             $table->string('recurrence_type', 50);
-
         });
     }
 

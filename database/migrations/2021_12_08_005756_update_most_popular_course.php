@@ -17,7 +17,7 @@ class UpdateMostPopularCourse extends Migration
             UPDATE courses
             SET course_title = CONCAT(\'(MOST POPULAR) \', course_title)
             WHERE id = (
-                SELECT course_id FROM student_courses
+                SELECT course_id FROM course_student
                 GROUP BY course_id
                 ORDER BY COUNT(course_id) DESC
                 LIMIT 1
