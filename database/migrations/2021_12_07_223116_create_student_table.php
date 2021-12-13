@@ -17,7 +17,7 @@ class CreateStudentTable extends Migration
             CREATE TABLE students (
                 id BIGINT UNSIGNED AUTO_INCREMENT,
                 first_name VARCHAR(50),
-                last_name VARCHAR(50),
+                temp_col VARCHAR(50),
                 PRIMARY KEY (id)
             ) engine=innodb;
         ');

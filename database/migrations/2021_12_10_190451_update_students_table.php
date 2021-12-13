@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateContactsTable extends Migration
+class UpdateStudentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,10 @@ class UpdateContactsTable extends Migration
     public function up()
     {
         DB::statement('
-            ALTER TABLE contacts
-                CHANGE address address_line_1 VARCHAR(50),
-                ADD address_line_2 VARCHAR(50);
+            ALTER TABLE students
+            ADD last_name VARCHAR(50) NOT NULL AFTER first_name,
+            DROP temp_col,
+            MODIFY first_name VARCHAR(50) NOT NULL;
         ');
     }
 
@@ -28,9 +29,10 @@ class UpdateContactsTable extends Migration
     public function down()
     {
         DB::statement('
-            ALTER TABLE contacts
-                CHANGE address_line_1 address VARCHAR(50),
-                DROP address_line_2;
+            ALTER TABLE students
+            DROP last_name,
+            ADD temp_col VARCHAR(50) AFTER first_name,
+            MODIFY first_name VARCHAR(50);
         ');
     }
 }
