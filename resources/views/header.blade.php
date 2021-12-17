@@ -2,22 +2,22 @@
     <div class="fixed-top d-flex flex-column flex-shrink-0 bg-light vh-100 shadow" style="width: 4.5rem;">
         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
             <li class="nav-item">
-                <a href="#" class="nav-link py-3 border-bottom" title="My Courses" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('courses') }}" class="nav-link py-3 border-bottom {{ request()->routeIs('courses') ? 'active' : '' }}" title="My Courses" data-bs-toggle="tooltip" data-bs-placement="right">
                     <i class="fas fa-th-list fa-2x"></i>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link py-3 border-bottom" title="Calendar" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('calendar') }}" class="nav-link py-3 border-bottom {{ request()->routeIs('calendar') ? 'active' : '' }}" title="Calendar" data-bs-toggle="tooltip" data-bs-placement="right">
                     <i class="fas fa-calendar-alt fa-2x"></i>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link active py-3 border-bottom" title="Blog" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('blog') }}" class="nav-link py-3 border-bottom {{ request()->routeIs('blog') ? 'active' : '' }}" title="Blog" data-bs-toggle="tooltip" data-bs-placement="right">
                     <i class="fas fa-pencil-alt fa-2x"></i>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link py-3 border-bottom" title="Contact Us" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('contact') }}" class="nav-link py-3 border-bottom {{ request()->routeIs('contact') ? 'active' : '' }}" title="Contact Us" data-bs-toggle="tooltip" data-bs-placement="right">
                     <i class="fas fa-phone fa-2x"></i>
                 </a>
             </li>
@@ -58,8 +58,9 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('courses') }}">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('blog') }}">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
                     </ul>
                     <div class="ms-auto">
                         <a href="{{ route('login') }}" class="text-decoration-none mx-2">Log In</a>

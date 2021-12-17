@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\CreatePostController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +25,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/blog/new', [BlogController::class, 'newPost'])->name('blog.new')->middleware('auth');
+Route::get('/blog/post', [BlogController::class, 'showPost'])->name('blog.show');
+
+Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
+Route::get('/courses/details', [CoursesController::class, 'showCourse'])->name('course.show')->middleware('auth');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
