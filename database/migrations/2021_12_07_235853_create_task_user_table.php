@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaskSubmissionTable extends Migration
+class CreateTaskUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateTaskSubmissionTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_submission', function (Blueprint $table) {
+        Schema::create('task_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('task_id')
                 ->references('id')->on('tasks')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->foreignId('student_id')
-                ->references('id')->on('students')
+            $table->foreignId('user_id')
+                ->references('id')->on('users')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->string('submission_file_path');
@@ -35,6 +35,6 @@ class CreateTaskSubmissionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task_submission');
+        Schema::dropIfExists('task_user');
     }
 }

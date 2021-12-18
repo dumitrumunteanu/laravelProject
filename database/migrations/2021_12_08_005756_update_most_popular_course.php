@@ -15,9 +15,9 @@ class UpdateMostPopularCourse extends Migration
     {
         DB::statement('
             UPDATE courses
-            SET course_title = CONCAT(\'(MOST POPULAR) \', course_title)
+            SET title = CONCAT(\'(MOST POPULAR) \', title)
             WHERE id = (
-                SELECT course_id FROM student_courses
+                SELECT course_id FROM course_user
                 GROUP BY course_id
                 ORDER BY COUNT(course_id) DESC
                 LIMIT 1
@@ -34,8 +34,8 @@ class UpdateMostPopularCourse extends Migration
     {
         DB::statement('
             UPDATE courses
-            SET course_title = REPLACE(course_title, \'(MOST POPULAR) \', \'\')
-            WHERE course_title LIKE \'(MOST POPULAR)%\';
+            SET title = REPLACE(title, \'(MOST POPULAR) \', \'\')
+            WHERE title LIKE \'(MOST POPULAR)%\';
         ');
     }
 }

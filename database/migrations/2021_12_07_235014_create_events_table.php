@@ -21,9 +21,8 @@ class CreateEventsTable extends Migration
                 ->cascadeOnUpdate();
             $table->dateTime('start');
             $table->dateTime('end')->nullable();
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
             $table->string('recurrence_type', 50);
-
         });
     }
 

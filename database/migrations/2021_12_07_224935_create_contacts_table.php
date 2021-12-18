@@ -14,13 +14,13 @@ class CreateContactsTable extends Migration
     public function up()
     {
         Schema::create('contacts', function (Blueprint $table) {
-            $table->foreignId('student_id')
-                ->references('id')->on('students')
+            $table->foreignId('user_id')
+                ->references('id')->on('users')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->string('phone', 50)->unique();
             $table->string('address', 50);
-            $table->primary('student_id');
+            $table->primary('user_id');
         });
     }
 
