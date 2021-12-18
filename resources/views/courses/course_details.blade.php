@@ -83,18 +83,3 @@
         </div>
     </div>
 @endsection
-
-{{--
-
-blog -> blog
-addpost -> new_post
-post -> post
-coursedetails -> course_details
-courses -> courses
-user -> calendar
-contactus -> contact
-index -> welcome
-
-taskdetails ->
-
---}}

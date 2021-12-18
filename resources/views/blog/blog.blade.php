@@ -40,40 +40,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
-                <div class="card my-3">
-                    <div class="card-body">
-                        <h5 class="card-title text-uppercase">Post title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted fw-light">Posted on 02.02.2020</h6>
-                        <p class="card-text text-truncate">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis earum illo, debitis ullam beatae culpa nisi ut! Pariatur tempore maxime incidunt eos eveniet debitis repellat iusto suscipit, harum velit obcaecati!</p>
-                        <a href="{{ route('blog.show') }}" class="card-link d-block text-end text-decoration-none">Read more</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div class="card my-3">
-                    <div class="card-body">
-                        <h5 class="card-title text-uppercase">another Post title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted fw-light">Posted on 02.02.2020</h6>
-                        <p class="card-text text-truncate">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis earum illo, debitis ullam beatae culpa nisi ut! Pariatur tempore maxime incidunt eos eveniet debitis repellat iusto suscipit, harum velit obcaecati!</p>
-                        <a href="#" class="card-link d-block text-end text-decoration-none">Read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card my-3">
-                    <div class="card-body">
-                        <h5 class="card-title text-uppercase">Post title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted fw-light">Posted on 02.02.2020</h6>
-                        <p class="card-text text-truncate">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis earum illo, debitis ullam beatae culpa nisi ut! Pariatur tempore maxime incidunt eos eveniet debitis repellat iusto suscipit, harum velit obcaecati!</p>
-                        <a href="#" class="card-link d-block text-end text-decoration-none">Read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+            @foreach($posts as $post)
+                @include('blog.blog_card_template')
+            @endforeach
+        <div>
     </div>
 @endsection

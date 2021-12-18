@@ -46,46 +46,9 @@
 
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-            <div class="col">
-                <div class="card shadow">
-                    <a href="{{ route('course.show') }}" class="card-block text-decoration-none text-dark">
-                        <img src="https://via.placeholder.com/150" height="150" class="card-img-top" alt="img">
-                        <div class="card-body">
-                            <h5 class="card-title">Course 1</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow">
-                    <a href="" class="card-block text-decoration-none text-dark">
-                        <img src="https://via.placeholder.com/150" height="150" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Another Course</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow">
-                    <a href="" class="card-block text-decoration-none text-dark">
-                        <img src="https://via.placeholder.com/150" height="150" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Favourite Course</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow">
-                    <a href="" class="card-block text-decoration-none text-dark">
-                        <img src="https://via.placeholder.com/150" height="150" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">One more course</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            @foreach($courses as $course)
+                @include('courses.course_card_template')
+            @endforeach
         </div>
     </div>
 
