@@ -27,7 +27,7 @@ Auth::routes();
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/new', [BlogController::class, 'newPost'])->name('blog.new')->middleware('auth');
-Route::get('/blog/post', [BlogController::class, 'showPost'])->name('blog.show');
+Route::get('/blog/{id?}', [BlogController::class, 'showPost'])->where('id', '[0-9]+')->name('blog.show');
 
 Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
 Route::get('/courses/details', [CoursesController::class, 'showCourse'])->name('course.show')->middleware('auth');
