@@ -126,7 +126,7 @@
     </script>
 </head>
     <body class="bg-light">
-        @include('header')
+        @include('components.headers.logged_in_header')
 
         <div id="calendar-container"><div id="calendar"></div></div>
 

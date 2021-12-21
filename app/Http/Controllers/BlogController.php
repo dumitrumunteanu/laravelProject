@@ -27,6 +27,6 @@ class BlogController extends Controller
         $post = Post::findOrFail($id);
         $comments = Post::findOrFail($id)->comments()->orderBy('published_at', 'DESC')->get();
 
-        return view('blog.post', ['post' => $post], ['comments' => $comments]);
+        return view('blog.post.post', ['post' => $post], ['comments' => $comments]);
     }
 }

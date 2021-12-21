@@ -20,7 +20,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()) {
+        return redirect()->route('courses');
+    }
+    else {
+        return view('welcome');
+    }
 });
 
 Auth::routes();

@@ -22,13 +22,13 @@
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-<body class="bg-light" @if(Auth::check()) style="margin-left: 4.5rem" @else style="margin-top: 4rem" @endif>
+<body class="bg-light" style="margin-top: 4rem">
     <div id="app">
-        @include('header')
+        @include('components.headers.logged_out_header')
 
         @yield('content')
     </div>
 
-    @include('footer')
+    @include('components.footer')
 </body>
 </html>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends(Auth::check() ? 'layouts.app_logged_in' : 'layouts.app_logged_out')
 
 @section('content')
     <div class="container">
