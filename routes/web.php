@@ -40,3 +40,4 @@ Route::get('/courses/details', [CoursesController::class, 'showCourse'])->name('
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
+Route::get('/calendar/events', [CalendarController::class, 'events'])->name('events')->middleware('auth');
