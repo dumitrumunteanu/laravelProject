@@ -12,37 +12,14 @@
         <hr>
     </div>
 
-    <div class="container my-3">
-        <div class="row">
-            <div class="col mb-3">
-                <div class="dropdown justify-content-start">
-                    @if(Auth::check())
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCourse">
-                            <i class="fas fa-plus"></i> New Course
-                        </button>
-                    @endif
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-arrows-alt-v"></i> Order By
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownFilter">
-                        <li><a class="dropdown-item" href="#">Name (A - Z)</a></li>
-                        <li><a class="dropdown-item" href="#">Name (Z - A)</a></li>
-                        <li><a class="dropdown-item" href="#">Date (new - old)</a></li>
-                        <li><a class="dropdown-item" href="#">Date (old - new)</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-4 col-lg-3">
-                <div class="input-group mb-3">
-                    <input type="search" class="form-control" placeholder="Search">
-                    <button type="button" class="btn btn-primary">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @section('button')
+        @if(Auth::check())
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCourse">
+                <i class="fas fa-plus"></i> New Course
+            </button>
+        @endif
+    @endsection
+    @include('components.filter')
 
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
