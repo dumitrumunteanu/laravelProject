@@ -11,7 +11,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('blog') }}" class="nav-link py-3 border-bottom {{ request()->routeIs('blog', 'blog.new') ? 'active' : '' }}" title="Blog" data-bs-toggle="tooltip" data-bs-placement="right">
+            <a href="{{ route('blog') }}" class="nav-link py-3 border-bottom {{ request()->routeIs('blog', 'blog.new', 'blog.show') ? 'active' : '' }}" title="Blog" data-bs-toggle="tooltip" data-bs-placement="right">
                 <i class="fas fa-pencil-alt fa-2x"></i>
             </a>
         </li>
