@@ -4,8 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CoursesController;
-use App\Http\Controllers\CreatePostController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,8 +30,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
-Route::get('/blog/new', [BlogController::class, 'newPost'])->name('blog.new')->middleware('auth');
-Route::get('/blog/{id?}', [BlogController::class, 'showPost'])->where('id', '[0-9]+')->name('blog.show');
+Route::get('/blog/new', [PostController::class, 'newPost'])->name('blog.new')->middleware('auth');
+Route::get('/blog/{id?}', [PostController::class, 'showPost'])->where('id', '[0-9]+')->name('blog.show');
+Route::post('/blog/new/submit', [PostController::class, 'store'])->name('post.submit');
 
 Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
 Route::get('/courses/details', [CoursesController::class, 'showCourse'])->name('course.show')->middleware('auth');

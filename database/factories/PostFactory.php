@@ -20,9 +20,6 @@ class PostFactory extends Factory
             'user_id' => User::all()->random()->id,
             'image' => $this->faker->image('storage/app/public/blog_img', $width = 640, $height = 480, $category = null, $fullPath = false),
             'published_at' => $this->faker->dateTime(),
-            'excerpt' => $this->faker->sentence(),
-            'seo_title' => $this->faker->sentence(),
-            'seo_description' => $this->faker->sentence(),
         ];
     }
 }

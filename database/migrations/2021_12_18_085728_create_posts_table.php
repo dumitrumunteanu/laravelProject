@@ -21,10 +21,7 @@ class CreatePostsTable extends Migration
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->string('image');
-            $table->dateTime('published_at')->nullable();
-            $table->tinyText('excerpt');
-            $table->string('seo_title');
-            $table->string('seo_description');
+            $table->dateTime('published_at');
         });
     }
 

@@ -17,9 +17,6 @@ class Post extends Model
         'user_id',
         'image',
         'published_at',
-        'excerpt',
-        'seo_title',
-        'seo_description',
     ];
 
     public function comments() {

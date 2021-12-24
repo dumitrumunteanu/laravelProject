@@ -40,4 +40,7 @@
     <div class="row">
         {{ $posts->links() }}
     </div>
+
+    @include('components.toast')
+
 @endsection
