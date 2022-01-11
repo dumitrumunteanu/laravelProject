@@ -38,6 +38,7 @@ Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
 Route::get('/courses/details', [CoursesController::class, 'showCourse'])->name('course.show')->middleware('auth');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
 Route::get('/calendar/events', [CalendarController::class, 'events'])->name('events')->middleware('auth');
