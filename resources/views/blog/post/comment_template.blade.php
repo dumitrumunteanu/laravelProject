@@ -6,7 +6,7 @@
         <div class="col-10 col-md-11">
             <div class="card-body">
                 <h6 class="card-title">{{ $comment->author_email}}</h6>
-                <p class="card-text">{{ $comment->message }}</p>
+                <p class="card-text text-break">{{ $comment->message }}</p>
                 <p class="card-text"><small class="text-muted">Posted: {{ date('d.m.Y', strtotime($comment->published_at)) }}</small></p>
             </div>
         </div>

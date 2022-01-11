@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\PostController;
@@ -33,6 +34,7 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/new', [PostController::class, 'newPost'])->name('blog.new')->middleware('auth');
 Route::get('/blog/{id?}', [PostController::class, 'showPost'])->where('id', '[0-9]+')->name('blog.show');
 Route::post('/blog/new/submit', [PostController::class, 'store'])->name('post.submit');
+Route::post('/blog/{id}', [CommentController::class, 'store'])->where('id', '[0-9]+')->name('comment.add');
 
 Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
 Route::get('/courses/details', [CoursesController::class, 'showCourse'])->name('course.show')->middleware('auth');
