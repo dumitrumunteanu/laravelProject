@@ -18,9 +18,3 @@ class ContactRequest extends FormRequest {
         ];
     }
 }
-//<option value="">Choose which department you want to contact</option>
-//                            <option @if(old('department') === 'IT') selected @endif value="IT">IT</option>
-//                            <option @if(old('department') === 'hr') selected @endif value="hr">Human Resources</option>
-//                            <option @if(old('department') === 'marketing') selected @endif value="marketing">Marketing</option>
-//                            <option @if(old('department') === 'operations') selected @endif value="operations">Operations Department</option>
-//                            <option @if(old('department') === 'finance') selected @endif value="finance">Finance</option>
