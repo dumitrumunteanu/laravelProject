@@ -14,6 +14,7 @@
     <p class="fs-5 fw-bold">User requested attention:</p>
     <p><span class="fw-bold">User first name:</span> {{ $firstName }}</p>
     <p><span class="fw-bold">User last name:</span> {{ $lastName }}</p>
+    <p><span class="fw-bold">User email:</span> {{ $email }}</p>
     <p><span class="fw-bold">Department to contact:</span> {{ $department }}</p>
     <p><span class="fw-bold">User message:</span> <br> {{ $content }}</p>
 </body>

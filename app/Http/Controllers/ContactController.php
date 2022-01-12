@@ -14,13 +14,13 @@ class ContactController extends Controller
 
     public function send(ContactRequest $request) {
         $data = $request->validated();
-        \Log::debug('test', $data);
 
         \Mail::send(
             'emails.contact',
             [
                 'firstName' => $data['first-name'],
                 'lastName' => $data['last-name'],
+                'email' => $data['email'],
                 'department' => $data['department'],
                 'content' => $data['message'],
             ],
@@ -31,6 +31,6 @@ class ContactController extends Controller
             }
         );
 
-        return redirect()->route('contact', ['data' => $data])->with('status', 'Message submitted successfully!');
+        return redirect()->route('contact')->withInput($data)->with('status', 'Message sent successfully!');
     }
 }
