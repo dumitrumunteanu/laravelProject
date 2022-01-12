@@ -27,4 +27,8 @@
 
         @include('blog.post.comments')
     </div>
+
+    <div class="row">
+        {{ $comments->links() }}
+    </div>
 @endsection

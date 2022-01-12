@@ -13,7 +13,7 @@ class PostController extends Controller {
 
     public function showPost($id) {
         $post = Post::findOrFail($id);
-        $comments = Post::findOrFail($id)->comments()->orderBy('published_at', 'DESC')->get();
+        $comments = Post::findOrFail($id)->comments()->orderBy('published_at', 'DESC')->paginate(5);
 
         return view('blog.post.post', [
             'post' => $post,
