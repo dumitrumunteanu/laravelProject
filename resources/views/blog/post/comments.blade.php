@@ -10,7 +10,7 @@
             @if(Auth::check())
                 <h6 class="card-title">{{ Auth::user()->email }}</h6>
             @else
-                <input id="email" class="form-control mb-2 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required autocomplete="email">
+                <input type="email" id="email" class="form-control mb-2 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required autocomplete="email">
                 @error('email')
                     <div class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
