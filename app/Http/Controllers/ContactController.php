@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Request\ContactRequest;
+use App\Services\ContactMailer;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Message;
 
 class ContactController extends Controller
 {
@@ -12,24 +12,10 @@ class ContactController extends Controller
         return view('contact');
     }
 
-    public function send(ContactRequest $request) {
+    public function send(ContactRequest $request, ContactMailer $mailer) {
         $data = $request->validated();
 
-        \Mail::send(
-            'emails.contact',
-            [
-                'firstName' => $data['first-name'],
-                'lastName' => $data['last-name'],
-                'email' => $data['email'],
-                'department' => $data['department'],
-                'content' => $data['message'],
-            ],
-            function (Message $message) use ($data) {
-                $message->subject('User requested attention');
-                $message->to('contact@organizer.com');
-                $message->from($data['email']);
-            }
-        );
+        $mailer->send($data);
 
         return redirect()->route('contact')->withInput($data)->with('status', 'Message sent successfully!');
     }
