@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Auth;
-use Intervention\Image\Facades\Image;
 use Psr\Log\LoggerInterface;
 
 class Creator {
@@ -38,5 +38,16 @@ class Creator {
         ]);
 
         $this->logger->info('User ' . Auth::user()->email . ' added a new post.');
+    }
+
+    public function addComment(array $data, int $postId) {
+        Comment::create([
+            'author_email' => $data['email'] ?? Auth::user()->email,
+            'message' => $data['message'],
+            'post_id' => $postId,
+            'published_at' => now(),
+        ]);
+
+        $this->logger->info('Added comment', $data);
     }
 }
