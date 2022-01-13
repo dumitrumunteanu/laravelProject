@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Request\PostRequest;
 use App\Models\Post;
+use App\Services\Creator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller {
     public function newPost() {
@@ -21,28 +22,11 @@ class PostController extends Controller {
         ]);
     }
 
-    public function store() {
-        $storeFileName = '';
+    public function store(PostRequest $request, Creator $creator) {
+        $data = $request->validated();
 
-        if (request()->hasFile('image')) {
-            $file = request()->file('image');
-            $fileExt = $file->getClientOriginalExtension();
-            $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $storeFileName = str_replace(' ', '_', $fileName . '_' . now() . '.' . $fileExt);
-            $file->move('storage/blog_img', $storeFileName);
-        }
-        else {
-            $storeFileName= 'defaultbg.png';
-        }
+        $creator->addPost($data);
 
-        Post::create([
-            'title' => request()->title,
-            'description' => request()->description,
-            'user_id' => Auth::user()->id,
-            'image' => $storeFileName,
-            'published_at' => now(),
-        ]);
-
-        return redirect(route('blog'))->with('status', 'Post created successfully!');
+        return redirect()->route('blog')->with('status', 'Post created successfully!');
     }
 }

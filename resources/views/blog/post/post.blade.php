@@ -17,7 +17,7 @@
 
     <div class="container">
         <p>
-            {{ $post->description }}
+            {!! nl2br(e($post->description)) !!}
         </p>
     </div>
 
