@@ -8,7 +8,7 @@ use App\Services\CourseCreator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CoursesController extends Controller {
+class CourseController extends Controller {
     public function index() {
         $request = request()->all();
 
