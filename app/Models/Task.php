@@ -12,6 +12,7 @@ class Task extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'title',
         'course_id',
         'description',
         'date_due',
