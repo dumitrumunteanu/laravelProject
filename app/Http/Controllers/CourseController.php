@@ -49,6 +49,11 @@ class CourseController extends Controller {
 
     public function showCourse($id) {
         $course = Course::findOrFail($id);
+
+        if (!$course->users->contains(Auth::user())) {
+            return redirect(route('courses'));
+        }
+
         $tasks = $course->tasks()->orderBy('date_due', 'DESC')->get();
 
         return view('courses.course_details', [
