@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Request\CourseRequest;
 use App\Models\Course;
+use App\Services\CourseCreator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +39,17 @@ class CoursesController extends Controller {
         return view('courses.courses', ['courses' => $courses]);
     }
 
-    public function showCourse() {
-        return view('courses.course_details');
+    public function store(CourseRequest $request, CourseCreator $creator) {
+        $data = $request->validated();
+
+        $creator->addCourse($data);
+
+        return redirect()->route('courses')->with('status', 'Course created successfully!');
+    }
+
+    public function showCourse($id) {
+        $course = Course::findOrFail($id);
+
+        return view('courses.course_details', ['course' => $course]);
     }
 }

@@ -37,7 +37,8 @@ Route::post('/blog/new/submit', [PostController::class, 'store'])->name('post.su
 Route::post('/blog/{id}', [CommentController::class, 'store'])->where('id', '[0-9]+')->name('comment.add');
 
 Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
-Route::get('/courses/details', [CoursesController::class, 'showCourse'])->name('course.show')->middleware('auth');
+Route::post('/courses/new', [CoursesController::class, 'store'])->name('course.create')->middleware('auth');
+Route::get('/courses/{id?}', [CoursesController::class, 'showCourse'])->where('id', '[0-9]+')->name('course.show')->middleware('auth');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');

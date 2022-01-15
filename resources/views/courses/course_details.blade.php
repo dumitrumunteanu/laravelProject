@@ -2,14 +2,35 @@
 
 @section('content')
     <div class="container">
-        <h1 class="display-4 fw-bold mt-3">Course 1</h1>
+        <h1 class="display-4 fw-bold mt-3">{{ $course->title }}</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="courses.html">My Courses</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Course 1</li>
+                <li class="breadcrumb-item"><a href="{{ route('courses') }}">My Courses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $course->title }}</li>
             </ol>
         </nav>
-        <hr>
+        <div class="border-start border-primary border-4 rounded">
+            <p class="border border-2 border-start-0 rounded-end p-2 text-break">
+                {{ $course->description }}
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="accordion accordion-flush" id="accordion-enrolled">
+            <div class="accordion-item border shadow">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#enrolled-list" aria-expanded="false" aria-controls="enrolled-list">
+                        Enrolled Students List
+                    </button>
+                </h2>
+                <div id="enrolled-list" class="accordion-collapse collapse" aria-labelledby="heading" data-bs-parent="#accordion-enrolled">
+                    <div class="accordion-body">
+                        List enrolled student here
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="container">

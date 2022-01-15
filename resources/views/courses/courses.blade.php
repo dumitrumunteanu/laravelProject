@@ -38,25 +38,42 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        <form id="createCourse">
+                        <form id="createCourse" name="createCourse" method="POST" action="{{ route('course.create') }}" enctype="multipart/form-data">
+                            @csrf
+
                             <div class="row mb-3">
-                                <label for="courseTitle" class="col-2 col-form-label">Title</label>
+                                <label for="title" class="col-2 col-form-label">Title</label>
                                 <div class="col-10">
-                                    <input type="text" id="courseTitle" name="courseTitle" placeholder="Course title" class="form-control">
+                                    <input value="{{ old('title') }}" type="text" id="title" name="title" placeholder="Course title" class="form-control @error('title') is-invalid @enderror">
+                                    @error('title')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="courseBg" class="col-2 col-form-label">Wallpaper</label>
+                                <label for="image" class="col-2 col-form-label">Wallpaper</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="file" id="courseBg" accept="image/*">
+                                    <input id="image" name="image" type="file"  accept="image/*" class="form-control @error('image') is-invalid @enderror">
+                                    @error('image')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="courseDescription" class="col-2 col-form-label">Details</label>
+                                <label for="title" class="col-2 col-form-label">Details</label>
                                 <div class="col-10">
-                                    <textarea name="courseDescription" id="courseDescription" rows="3" placeholder="Course details/comments" class="form-control"></textarea>
+                                    <textarea name="description" id="description" rows="3" placeholder="Course details/comments" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                                    @error('description')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                         </form>
@@ -64,9 +81,18 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" form="createEvent" class="btn btn-primary">Save</button>
+                    <button type="submit" form="createCourse" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
     </div>
+@if ($errors->any())
+    <script>
+        var addEventDOM = document.getElementById("addCourse");
+        addEventDOM.classList.remove("fade");
+        var addEventModal = new bootstrap.Modal(addEventDOM, {});
+        addEventModal.show();
+        addEventDOM.classList.add("fade");
+    </script>
+@endif
 @endsection
