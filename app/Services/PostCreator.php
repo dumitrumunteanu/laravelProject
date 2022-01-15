@@ -7,7 +7,7 @@ use App\Models\Post;
 use Auth;
 use Psr\Log\LoggerInterface;
 
-class Creator {
+class PostCreator {
     private Post $post;
     private LoggerInterface $logger;
 

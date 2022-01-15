@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Request\PostRequest;
 use App\Models\Post;
-use App\Services\Creator;
+use App\Services\PostCreator;
 use Illuminate\Http\Request;
 
 class PostController extends Controller {
@@ -22,7 +22,7 @@ class PostController extends Controller {
         ]);
     }
 
-    public function store(PostRequest $request, Creator $creator) {
+    public function store(PostRequest $request, PostCreator $creator) {
         $data = $request->validated();
 
         $creator->addPost($data);
