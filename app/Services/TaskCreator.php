@@ -15,7 +15,7 @@ class TaskCreator {
         $this->logger = $logger;
     }
 
-    public function create(array $data, int $courseId) {
+    public function addTask(array $data, int $courseId) {
         $this->task->create([
             'title' => $data['title'],
             'course_id' => $courseId,

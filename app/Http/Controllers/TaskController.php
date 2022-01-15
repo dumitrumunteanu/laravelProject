@@ -14,7 +14,7 @@ class TaskController extends Controller {
     public function store($courseId, TaskRequest $request, TaskCreator $creator) {
         $data = $request->validated();
 
-        $creator->create($data, $courseId);
+        $creator->addTask($data, $courseId);
 
         return redirect()->route('course.show', $courseId)->with('status', 'Task created successfully!');
     }
