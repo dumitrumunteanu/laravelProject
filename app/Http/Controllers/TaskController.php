@@ -11,8 +11,10 @@ class TaskController extends Controller {
         $this->middleware('auth');
     }
 
-    public function store($courseId, TaskRequest $request) {
+    public function store($courseId, TaskRequest $request, TaskCreator $creator) {
         $data = $request->validated();
+
+        $creator->create($data, $courseId);
 
         return redirect()->route('course.show', $courseId)->with('status', 'Task created successfully!');
     }

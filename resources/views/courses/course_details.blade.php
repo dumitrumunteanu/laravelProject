@@ -129,6 +129,8 @@
         </div>
     </div>
 
+    @include('components.toast')
+
     @if ($errors->any())
         <script>
             var addEventDOM = document.getElementById("addTask");
