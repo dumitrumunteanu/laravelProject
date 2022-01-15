@@ -16,6 +16,14 @@
         </div>
     </div>
 
+    <div class="container my-4">
+        <div class="col">
+            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTask">
+                <i class="fas fa-plus"></i> New Assignment
+            </a>
+        </div>
+    </div>
+
     <div class="container">
         <div class="accordion accordion-flush" id="accordion-enrolled">
             <div class="accordion-item border shadow">
@@ -34,29 +42,9 @@
     </div>
 
     <div class="container">
-        <div class="card shadow my-3">
-            <a href="#" class="card-block text-decoration-none text-dark">
-                <div class="card-body">
-                    <h5 class="card-title">Assignment example title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Due: 12.12.1212</h6>
-                </div>
-            </a>
-        </div>
-
-        <div class="card shadow my-3">
-            <div class="card-body">
-                <h5 class="card-title">Another assignment here</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Due: 11.11.1111</h6>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="col">
-            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTask">
-                <i class="fas fa-plus"></i> New Assignment
-            </a>
-        </div>
+        @foreach($tasks as $task)
+            @include('courses.task_card_template')
+        @endforeach
     </div>
 
     <div class="modal fade" id="addTask" tabindex="-1" aria-labelledby="addTaskLabel" aria-hidden="true">

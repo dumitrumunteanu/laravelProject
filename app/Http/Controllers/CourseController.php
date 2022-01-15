@@ -49,7 +49,11 @@ class CourseController extends Controller {
 
     public function showCourse($id) {
         $course = Course::findOrFail($id);
+        $tasks = $course->tasks()->orderBy('date_due', 'DESC')->get();
 
-        return view('courses.course_details', ['course' => $course]);
+        return view('courses.course_details', [
+            'course' => $course,
+            'tasks' => $tasks,
+        ]);
     }
 }
