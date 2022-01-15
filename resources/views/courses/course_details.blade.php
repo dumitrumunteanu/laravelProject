@@ -35,7 +35,7 @@
 
     <div class="container">
         <div class="card shadow my-3">
-            <a href="taskdetails.html" class="card-block text-decoration-none text-dark">
+            <a href="#" class="card-block text-decoration-none text-dark">
                 <div class="card-body">
                     <h5 class="card-title">Assignment example title</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Due: 12.12.1212</h6>
@@ -68,29 +68,54 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        <form id="createTask">
+                        <form id="createTask" name="createTask" method="POST" action="{{ route('task.create', $course->id) }}" enctype="multipart/form-data">
+                            @csrf
+
                             <div class="row mb-3">
-                                <label for="taskTitle" class="col-2 col-form-label">Title</label>
+                                <label for="title" class="col-2 col-form-label">Title</label>
                                 <div class="col-10">
-                                    <input type="text" id="taskTitle" name="taskTitle" placeholder="Task title" class="form-control">
+                                    <input value="{{ old('title') }}" type="text" id="title" name="title" placeholder="Task title" class="form-control @error('title') is-invalid @enderror">
+                                    @error('title')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="dateDue" class="col-2 col-form-label">Due</label>
-                                <div class="col-5">
-                                    <input type="date" id="dateDue" name="dateDue" class="form-control">
-                                </div>
-                                <div class="col-5">
-                                    <input type="time" id="timeDue" name="timeDue" class="form-control">
-
+                                <label for="date" class="col-2 col-form-label">Date</label>
+                                <div class="col-10">
+                                    <input value="{{ old('date') }}" type="date" id="date" name="date" class="form-control @error('date') is-invalid @enderror">
+                                    @error('date')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="taskDescription" class="col-2 col-form-label">Details</label>
+                                <label for="time" class="col-2 col-form-label">Time</label>
                                 <div class="col-10">
-                                    <textarea name="taskDescription" id="taskDescription" rows="3" placeholder="task details/comments" class="form-control"></textarea>
+                                    <input value="{{ old('time') }}" type="time" id="time" name="time" class="form-control @error('time') is-invalid @enderror">
+                                    @error('time')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="description" class="col-2 col-form-label">Details</label>
+                                <div class="col-10">
+                                    <textarea name="description" id="description" rows="3" placeholder="Task details/comments" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                                    @error('description')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                         </form>
@@ -98,9 +123,19 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" form="createEvent" class="btn btn-primary">Save</button>
+                    <button type="submit" form="createTask" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
     </div>
+
+    @if ($errors->any())
+        <script>
+            var addEventDOM = document.getElementById("addTask");
+            addEventDOM.classList.remove("fade");
+            var addEventModal = new bootstrap.Modal(addEventDOM, {});
+            addEventModal.show();
+            addEventDOM.classList.add("fade");
+        </script>
+    @endif
 @endsection

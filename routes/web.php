@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,8 @@ Route::post('/blog/{id}', [CommentController::class, 'store'])->where('id', '[0-
 Route::get('/courses', [CourseController::class, 'index'])->name('courses');
 Route::post('/courses/new', [CourseController::class, 'store'])->name('course.create')->middleware('auth');
 Route::get('/courses/{id?}', [CourseController::class, 'showCourse'])->where('id', '[0-9]+')->name('course.show')->middleware('auth');
+
+Route::post('/courses/{id}/new-task', [TaskController::class, 'store'])->where('id', '[0-9]+')->name('task.create');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
