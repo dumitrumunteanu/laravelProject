@@ -16,8 +16,8 @@ abstract class AbstractRequestActivityLogger implements RequestActivityLoggerInt
 
     public function logRequest(Request $request, string $type): void {
         $this->logger->debug($this->identifyUserRepresentation($request->user()) . ' made a request to ' . ($type ?? 'unknown page'),
-            $this->collectRequestData($request));
+            $this->debugRequestData($request));
     }
 
-    abstract protected function collectRequestData(Request $request): array;
+    abstract protected function debugRequestData(Request $request): array;
 }
