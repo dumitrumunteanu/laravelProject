@@ -44,7 +44,7 @@ Route::get('/courses/{id?}', [CourseController::class, 'showCourse'])->where('id
 Route::post('/courses/{id}/new-task', [TaskController::class, 'store'])->where('id', '[0-9]+')->name('task.create');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send')->middleware('log.activity:sendContactUs');
 
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
 Route::get('/calendar/events', [CalendarController::class, 'events'])->name('events')->middleware('auth');
