@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Request\CourseRequest;
 use App\Models\Course;
 use App\Services\CourseCreator;
+use App\Services\ModelLogger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,8 +48,10 @@ class CourseController extends Controller {
         return redirect()->route('courses')->with('status', 'Course created successfully!');
     }
 
-    public function showCourse($id) {
+    public function showCourse($id, Request $request, ModelLogger $logger) {
         $course = Course::findOrFail($id);
+
+        $logger->logModel($request->user(), $course);
 
         if (!$course->users->contains(Auth::user())) {
             return redirect(route('courses'));

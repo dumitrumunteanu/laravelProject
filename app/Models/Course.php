@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Course extends Model implements LoggableInterface
 {
     use HasFactory;
 
@@ -28,4 +28,18 @@ class Course extends Model
     public function tasks() {
         return $this->hasMany(Task::class);
     }
+
+    public function convertToLoggableString(): string {
+        return "course with id {$this->id}";
+    }
+
+    public function getData(): array
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+        ];
+    }
+
+
 }
