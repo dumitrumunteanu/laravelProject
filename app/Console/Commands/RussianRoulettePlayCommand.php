@@ -49,7 +49,7 @@ class RussianRoulettePlayCommand extends Command
         $res = ($number === $dead ? 'dead' : 'alive');
 
         if($res === 'alive') {
-            $this->info('You did not lose.');
+            $this->info('You survived.');
         }
         else {
             $this->info('You lost!');
@@ -60,5 +60,11 @@ class RussianRoulettePlayCommand extends Command
         $stats[$res]++;
 
         $this->cacheRepository->set('stats', $stats, 86400); // keep for 1 day in cache
+
+        $stats = $this->cacheRepository->get('guessCount', []);
+        $stats[$number] = $stats[$number] ?? 0;
+        $stats[$number]++;
+
+        $this->cacheRepository->set('guessCount', $stats, 86400);
     }
 }

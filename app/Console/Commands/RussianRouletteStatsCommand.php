@@ -48,6 +48,17 @@ class RussianRouletteStatsCommand extends Command
             $table[] = [$key, $count];
         }
 
+        $this->info('Endgame state');
         $this->table(['state', 'count'], $table);
+
+        $stats = $this->cacheRepository->get('guessCount', []);
+
+        $table = [];
+        foreach ($stats as $key => $count) {
+            $table[] = [$key, $count];
+        }
+
+        $this->info('Numbers guessed');
+        $this->table(['guess', 'count'], $table);
     }
 }
