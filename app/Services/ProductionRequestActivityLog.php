@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class ProductionRequestActivityLog extends AbstractRequestActivityLogger {
     public function debugRequestData(Request $request): array {
-        return $request->all();
+        return [
+            'ip' => $request->ip(),
+            'url' => $request->fullUrl(),
+        ];
     }
 }
