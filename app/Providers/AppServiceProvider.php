@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\DebugRequestActivityLog;
+use App\Services\RequestActivityLoggerInterface;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +16,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if ($this->app->environment('local')) {
+            $this->app->bind(RequestActivityLoggerInterface::class, function () {
+                return $this->app->make(DebugRequestActivityLog::class);
+            });
+        }
     }
 
     /**

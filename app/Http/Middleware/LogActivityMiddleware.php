@@ -2,13 +2,13 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\DebugRequestActivityLog;
+use App\Services\RequestActivityLoggerInterface;
 use Closure;
 
 class LogActivityMiddleware {
-    private DebugRequestActivityLog $logger;
+    private RequestActivityLoggerInterface $logger;
 
-    public function __construct(DebugRequestActivityLog $logger) {
+    public function __construct(RequestActivityLoggerInterface $logger) {
         $this->logger = $logger;
     }
 
