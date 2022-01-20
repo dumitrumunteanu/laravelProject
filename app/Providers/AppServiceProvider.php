@@ -17,16 +17,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->environment('local')) {
-            $this->app->bind(RequestActivityLoggerInterface::class, function () {
-                return $this->app->make(DebugRequestActivityLog::class);
-            });
-        }
-        elseif ($this->app->environment('production')) {
-            $this->app->bind(RequestActivityLoggerInterface::class, function () {
-                return $this->app->make(ProductionRequestActivityLog::class);
-            });
-        }
+        $this->app->bind(RequestActivityLoggerInterface::class, function () {
+            return $this->app->make(
+                $this->app->environment('production') ? ProductionRequestActivityLog::class : DebugRequestActivityLog::class
+            );
+        });
     }
 
     /**
