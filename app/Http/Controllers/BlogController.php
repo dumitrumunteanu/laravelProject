@@ -22,23 +22,28 @@ class BlogController extends Controller {
             $sortOrder = $args[1];
         }
 
+        $searchText = $request['text'] ?? '';
         if (array_key_exists('author', $request)) {
-            $posts = Auth::user()->posts()->orderBy($sortBy, $sortOrder)->paginate(6);
+            $posts = Auth::user()->posts()->where('title', 'like', "%{$searchText}%")->orderBy($sortBy, $sortOrder)->paginate(6);
 
             $posts->appends([
                 'author' => 'me',
                 'sort' => ($sortBy === 'published_at' ? 'date' : 'title') . '_' . $sortOrder,
                 'page' => $request['page'] ?? '1',
+                'text' => $searchText,
             ]);
         }
         else {
-            $posts = Post::orderBy($sortBy, $sortOrder)->paginate(6);
+            $posts = Post::where('title', 'like', "%{$searchText}%")->orderBy($sortBy, $sortOrder)->paginate(6);
 
             $posts->appends([
                 'sort' => ($sortBy === 'published_at' ? 'date' : 'title') . '_' . $sortOrder,
                 'page' => $request['page'] ?? '1',
+                'text' => $searchText,
             ]);
         }
+
+        session()->flashInput($request);
 
         return view('blog.blog', ['posts' => $posts]);
     }
