@@ -25,17 +25,21 @@ class CourseController extends Controller {
             $sortOrder = $args[1];
         }
 
+        $searchText = $request['text'] ?? '';
         if (Auth::check()) {
-            $courses = Auth::user()->courses()->orderBy($sortBy, $sortOrder)->paginate(12);
+            $courses = Auth::user()->courses()->where('title', 'like', "%{$searchText}%")->orderBy($sortBy, $sortOrder)->paginate(12);
         }
         else {
-            $courses = Course::orderBy($sortBy, $sortOrder)->paginate(12);
+            $courses = Course::where('title', 'like', "%{$searchText}%")->orderBy($sortBy, $sortOrder)->paginate(12);
         }
 
         $courses->appends([
             'sort' => ($sortBy === 'created_at' ? 'date' : 'title') . '_' . $sortOrder,
             'page' => ($request['page'] ?? '1'),
+            'text' => $searchText,
         ]);
+
+        session()->flashInput($request);
 
         return view('courses.courses', ['courses' => $courses]);
     }
