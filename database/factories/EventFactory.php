@@ -14,10 +14,14 @@ class EventFactory extends Factory
      */
     public function definition()
     {
-        $start = $this->faker->dateTimeBetween('+0 days', '+30 days');
-        $clone = clone $start;
-        $end = $this->faker->dateTimeBetween($start, $clone->modify('+3 hours'));
-        $recurrence = array('once', 'weekdays', 'daily', 'weekly', 'monthly');
+        $minutes = [0, 15, 30, 45];
+        $duration = [1, 2, 3]; //how long will a generated event be
+        $recurrence = ['once', 'weekdays', 'daily', 'weekly', 'monthly'];
+
+        $start = $this->faker->dateTimeBetween('-30 days', '+30 days');
+        $start->setTime(rand(6, 17), $minutes[array_rand($minutes)]);
+
+        $end = date('Y-m-d H:i:s', strtotime("{$start->format('Y-m-d H:i:s')} +{$duration[array_rand($duration)]} hours"));
 
         return [
             'course_id' => Course::all()->random()->id,

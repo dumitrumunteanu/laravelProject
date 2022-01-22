@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         initialView: 'dayGridMonth',
         navLinks: true,
-        editable: true,
         nowIndicator: true,
         dayMaxEvents: true,
         businessHours: true,
@@ -34,21 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById("endDate").value = arg.endStr.split(/[T,\+]/)[0];
             document.getElementById("endTime").value = arg.endStr.split(/[T,\+]/)[1];
 
-            // if (title) {
-            // calendar.addEvent({
-            //     title: title,
-            //     start: arg.start,
-            //     end: arg.end,
-            //     allDay: arg.allDay
-            // })
-            //}
             calendar.unselect()
         },
-        // eventClick: function(arg) {
-        //     if (confirm('Are you sure you want to delete this event?')) {
-        //         arg.event.remove()
-        //     }
-        // },
         events: '/calendar/events'
     });
 
