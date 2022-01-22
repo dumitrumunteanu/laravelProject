@@ -95,11 +95,11 @@
 
     @if ($errors->any())
         <script>
-            var addEventDOM = document.getElementById("addCourse");
-            addEventDOM.classList.remove("fade");
-            var addEventModal = new bootstrap.Modal(addEventDOM, {});
-            addEventModal.show();
-            addEventDOM.classList.add("fade");
+            var addCourseDOM = document.getElementById("addCourse");
+            addCourseDOM.classList.remove("fade");
+            var addCourseModal = new bootstrap.Modal(addCourseDOM, {});
+            addCourseModal.show();
+            addCourseDOM.classList.add("fade");
         </script>
     @endif
 @endsection
