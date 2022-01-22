@@ -23,7 +23,7 @@ class CalendarController extends Controller
                 $events[] = [
                     'start' => $event['start'],
                     'end' => $event['end'],
-                    'title' => $course->title,
+                    'title' => $event['title'],
                 ];
             }
         }

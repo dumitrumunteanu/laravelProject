@@ -23,11 +23,12 @@ class EventFactory extends Factory
 
         $end = date('Y-m-d H:i:s', strtotime("{$start->format('Y-m-d H:i:s')} +{$duration[array_rand($duration)]} hours"));
 
+        $course = Course::all()->random();
         return [
-            'course_id' => Course::all()->random()->id,
+            'course_id' => $course->id,
             'start' => $start,
             'end' => $end,
-            'description' => $this->faker->sentence(),
+            'title' => $course->title,
             'recurrence_type' => $recurrence[array_rand($recurrence)],
         ];
     }

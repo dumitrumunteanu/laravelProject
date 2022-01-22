@@ -15,7 +15,7 @@ class Event extends Model
         'course_id',
         'start',
         'end',
-        'description',
+        'title',
         'recurrence_type',
     ];
 
