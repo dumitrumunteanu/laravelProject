@@ -5,6 +5,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
@@ -48,3 +49,4 @@ Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.
 
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
 Route::get('/calendar/events', [CalendarController::class, 'events'])->name('events')->middleware('auth');
+Route::post('/calemdar/events/add', [EventController::class, 'store'])->name('events.add');

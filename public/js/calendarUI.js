@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
+    let calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    let calendar = new FullCalendar.Calendar(calendarEl, {
         height: '100%',
         expandRows: true,
         scrollTime: '06:00',
@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
         selectable: true,
         selectMirror: true,
         select: function(arg) {
-            var addEventModal = new bootstrap.Modal(document.getElementById("addEvent"), {});
-
+            let addEventModal = new bootstrap.Modal(document.getElementById("addEvent"), {});
             addEventModal.show();
-            document.getElementById("startDate").value = arg.startStr.split(/[T,\+]/)[0];
-            document.getElementById("startTime").value = arg.startStr.split(/[T,\+]/)[1];
-            document.getElementById("endDate").value = arg.endStr.split(/[T,\+]/)[0];
-            document.getElementById("endTime").value = arg.endStr.split(/[T,\+]/)[1];
+
+            document.getElementById("start-date").value = arg.startStr.split(/[T,\+]/)[0];
+            document.getElementById("start-time").value = arg.startStr.split(/[T,\+]/)[1].slice(0, 5);
+            document.getElementById("end-date").value = arg.endStr.split(/[T,\+]/)[0];
+            document.getElementById("end-time").value = arg.endStr.split(/[T,\+]/)[1].slice(0, 5);
 
             calendar.unselect()
         },

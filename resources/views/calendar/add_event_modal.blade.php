@@ -1,5 +1,5 @@
 <div class="modal fade" id="addEvent" tabindex="-1" aria-labelledby="addEventLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addEventLabel">Add new event</h5>
@@ -7,57 +7,80 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form id="createEvent">
+                    <form id="createEvent" name="createEvent" method="POST" action="{{ route('events.add') }}" enctype="multipart/form-data">
+                        @csrf
+
                         <div class="row mb-3">
-                            <label for="eventTitle" class="col-2 col-form-label">Title</label>
+                            <label for="title" class="col-2 col-form-label">Title</label>
                             <div class="col-10">
-                                <input id="eventTitle" list="userCourses" name="eventTitle" placeholder="Set or choose event title" class="form-control" autocomplete="off">
-                                <datalist id="userCourses">
+                                <select id="title" name="title" class="form-control @error('title') is-invalid @enderror">
+                                    <option value="">Choose the course for the event</option>
                                     @foreach(Auth::user()->courses as $course)
-                                        <option data-value="{{ $course->id }}" value="{{ $course->title }}"></option>>
+                                        <option value="{{ $course->id }}" @if(old('title') === (string)$course->id) selected @endif>{{ $course->title }}</option>
                                     @endforeach
-                                </datalist>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="startDate" class="col-2 col-form-label">Start</label>
-                            <div class="col-5">
-                                <input type="date" id="startDate" name="startDate" class="form-control">
-                            </div>
-                            <div class="col-5">
-                                <input type="time" id="startTime" name="startTime" class="form-control">
-
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="endDate" class="col-2 col-form-label">End</label>
-                            <div class="col-5">
-                                <input type="date" id="endDate" name="startDate" class="form-control">
-                            </div>
-                            <div class="col-5">
-                                <input type="time" id="endTime" name="endTime" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="repeatingEvent" class="col-2 col-form-label">Occurs</label>
-                            <div class="col-10">
-                                <select class="form-select" name="repeatingEvent" id="repeatingEvent">
-                                    <option selected>Just once</option>
-                                    <option value="1">Every weekday (Mon - Fri)</option>
-                                    <option value="2">Daily</option>
-                                    <option value="3">Weekly</option>
-                                    <option value="4">Monthly</option>
                                 </select>
+                                @error('title')
+                                <div class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="eventComments" class="col-2 col-form-label">Details</label>
+                            <label for="start-date" class="col-2 col-form-label">Start</label>
+                            <div class="col-5">
+                                <input value="{{ old('start-date') }}" type="date" id="start-date" name="start-date" class="form-control @error('start-date') is-invalid @enderror">
+                                @error('start-date')
+                                <div class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-5">
+                                <input value="{{ old('start-time') }}" type="time" id="start-time" name="start-time" class="form-control @error('start-time') is-invalid @enderror">
+                                @error('start-time')
+                                <div class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="end_date" class="col-2 col-form-label">End</label>
+                            <div class="col-5">
+                                <input value="{{ old('end-date') }}" type="date" id="end-date" name="end-date" class="form-control @error('end-date') is-invalid @enderror">
+                                @error('end-date')
+                                <div class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-5">
+                                <input value="{{ old('end-time') }}" type="time" id="end-time" name="end-time" class="form-control @error('end-time') is-invalid @enderror">
+                                @error('end-time')
+                                <div class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="recurrence-type" class="col-2 col-form-label">Occurs</label>
                             <div class="col-10">
-                                <textarea name="eventComments" id="eventComments" rows="3" placeholder="Event details/comments" class="form-control"></textarea>
+                                <select class="form-select @error('recurrence-type') is-invalid @enderror" name="recurrence-type" id="recurrence-type">
+                                    <option value="once" @if(old('recurrence-type') === 'once') selected @endif>Just once</option>
+                                    <option value="daily" @if(old('recurrence-type') === 'daily') selected @endif>Daily</option>
+                                    <option value="weekly" @if(old('recurrence-type') === 'weekly') selected @endif>Weekly</option>
+                                    <option value="monthly" @if(old('recurrence-type') === 'monthly') selected @endif>Monthly</option>
+                                </select>
+                                @error('recurrence-type')
+                                <div class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
                             </div>
                         </div>
                     </form>
@@ -70,3 +93,13 @@
         </div>
     </div>
 </div>
+
+@if ($errors->any())
+    <script>
+        var addEventDOM = document.getElementById("addEvent");
+        addEventDOM.classList.remove("fade");
+        var addEventModal = new bootstrap.Modal(addEventDOM, {});
+        addEventModal.show();
+        addEventDOM.classList.add("fade");
+    </script>
+@endif
