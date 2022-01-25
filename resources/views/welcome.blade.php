@@ -40,44 +40,30 @@
         </div>
 
         <div class="container mt-3 mb-5">
-            <h1 class="display-6 fw-normal text-center py-3">Recent Blog Posts</h1>
+            <h1 class="display-6 fw-normal text-center py-3">Popular Blog Posts</h1>
             <div id="carouselControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-inner w-75 mx-auto">
-                    <div class="carousel-item active">
-                        <div class="card-group d-flex flex-wrap">
-                            <div class="card mx-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Post Title</h5>
-                                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit facilis, ad sit voluptas omnis enim.</p>
+                    @for($i = 0; $i < count($popularPosts) - 1; $i++)
+                        <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
+                            <div class="card-group d-flex flex-wrap">
+                                <div class="card mx-2">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">{{ $popularPosts[$i]->title }}</h5>
+                                        <p class="card-text text-truncate">{{ $popularPosts[$i]->description }}</p>
+                                        <a href="{{ route('blog.show', $popularPosts[$i]->id) }}" class="card-link text-end text-decoration-none mt-auto">Read more</a>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="card mx-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Post Title</h5>
-                                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit facilis, ad sit voluptas omnis enim.</p>
+                                <div class="card mx-2">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">{{ $popularPosts[$i + 1]->title }}</h5>
+                                        <p class="card-text text-truncate">{{ $popularPosts[$i + 1]->description }}</p>
+                                        <a href="{{ route('blog.show', $popularPosts[$i + 1]->id) }}" class="card-link text-end text-decoration-none mt-auto">Read more</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <div class="card-group d-flex flex-wrap">
-                            <div class="card mx-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Post Title</h5>
-                                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit facilis, ad sit voluptas omnis enim.</p>
-                                </div>
-                            </div>
-
-                            <div class="card mx-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Post Title</h5>
-                                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit facilis, ad sit voluptas omnis enim.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endfor
                 </div>
 
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
