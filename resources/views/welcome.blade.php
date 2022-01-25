@@ -7,6 +7,10 @@
         <a href="/login" class="btn btn-primary btn-lg mt-2 text-uppercase" role-button>Get Started Now</a>
     </div>
 
+    <div class="container text-center">
+        <img src="{{ asset('storage/homepagebg.png') }}" alt="homepage design" class="img-fluid">
+    </div>
+
     <div class="container-fluid my-3  py-4 bg-info shadow">
         <h1 class="display-6 fw-normal text-center pt-3">Made for students</h1>
         <div class="row py-3">
