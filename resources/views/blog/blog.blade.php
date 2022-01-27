@@ -19,7 +19,6 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownFilter">
                         <li><a class="dropdown-item" href="?author=me">My Posts</a></li>
-{{--                        <li><a class="dropdown-item" href="/blog">All Posts</a></li>--}}
                         <li><a class="dropdown-item" href="{{ (request()->sort ?? false) ? ('/blog?sort=' . request()->sort) : '/blog' }}">All Posts</a></li>
                     </ul>
                 </div>

@@ -22,15 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    if (Auth::check()) {
-//        return redirect()->route('courses');
-//    }
-//    else {
-//        return view('welcome');
-//    }
-//});
-
 Route::get('/', [WelcomeController::class, 'index']);
 
 Auth::routes();
