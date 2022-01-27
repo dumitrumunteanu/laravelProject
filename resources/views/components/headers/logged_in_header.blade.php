@@ -27,11 +27,13 @@
             <img src="https://via.placeholder.com/150" alt="img" width="38" height="38" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-            <li><a class="dropdown-item" href="/settings.html"><i class='fas fa-cog'></i> Settings</a></li>
+            <li>
+                <a class="dropdown-item" href="{{ route('settings') }}"><i class='fas fa-cog'></i> Settings</a>
+            </li>
             <li>
                 <hr class="dropdown-divider">
             </li>
-            <li><!--<a class="dropdown-item" href="/"><i class='fas fa-sign-out-alt'></i> Sign out</a>-->
+            <li>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="
                             event.preventDefault();
