@@ -10,10 +10,10 @@
         <div class="row row-cols-2">
             <div class="col-5 col-sm-4 col-md-3 col-lg-2">
                 <h6 class="h6">Profile Picture</h6>
-                <img src="https://via.placeholder.com/150" alt="profile picture" width="150px" height="150px" class="rounded-circle">
+                <img src="{{ asset('storage/profile_img/' . Auth::user()->image) }}" alt="profile picture" width="150px" height="150px" class="rounded-circle border border-primary border-3 shadow">
             </div>
 
-            <form id="profileImage" name="profileImage" class="mt-md-4" method="POST" action="" enctype="multipart/form-data">
+            <form id="profileImage" name="profileImage" class="mt-md-4" method="POST" action="{{ route('update.profile') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-10 mt-4">
@@ -33,4 +33,6 @@
             </form>
         </div>
     </div>
+
+    @include('components.toast')
 @endsection

@@ -44,6 +44,7 @@ Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.
 
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
 Route::get('/calendar/events', [CalendarController::class, 'events'])->name('events')->middleware('auth');
-Route::post('/calemdar/events/add', [EventController::class, 'store'])->name('events.add');
+Route::post('/calendar/events/add', [EventController::class, 'store'])->name('events.add');
 
-Route::get('/settings', [SettingsController::class, 'index'])->name('settings')->middleware('auth');
+Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+Route::post('/settings/update-image', [SettingsController::class, 'update'])->name('update.profile');

@@ -24,7 +24,7 @@
     <div class="dropdown border-top">
         <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser"
            data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://via.placeholder.com/150" alt="img" width="38" height="38" class="rounded-circle">
+            <img src="{{ asset('storage/profile_img/' . Auth::user()->image) }}" alt="img" width="38" height="38" class="rounded-circle border border-primary border-2">
         </a>
         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
             <li>
