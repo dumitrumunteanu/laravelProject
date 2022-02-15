@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\PostApiController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CommentController;
@@ -48,3 +49,5 @@ Route::post('/calendar/events/add', [EventController::class, 'store'])->name('ev
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 Route::post('/settings/update-image', [SettingsController::class, 'update'])->name('update.profile');
+
+Route::put('/api/articles/{articleId}', [PostApiController::class, 'update']);
