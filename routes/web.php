@@ -50,4 +50,5 @@ Route::post('/calendar/events/add', [EventController::class, 'store'])->name('ev
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 Route::post('/settings/update-image', [SettingsController::class, 'update'])->name('update.profile');
 
-Route::put('/api/articles/{articleId}', [PostApiController::class, 'update']);
+Route::get('/api/blog/most-popular', [PostApiController::class, 'readMostPopularArticles']);
+Route::put('/api/posts/{articleId}', [PostApiController::class, 'update']);
