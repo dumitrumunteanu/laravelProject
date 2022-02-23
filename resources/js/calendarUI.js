@@ -2,12 +2,13 @@ import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
 
 document.addEventListener('DOMContentLoaded', function() {
     let calendarEl = document.getElementById('calendar');
 
     let calendar = new Calendar(calendarEl, {
-        plugins: [ dayGridPlugin, timeGridPlugin, listPlugin ],
+        plugins: [ dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin ],
         initialView: 'dayGridMonth',
         height: '100%',
         expandRows: true,
@@ -35,9 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
             addEventModal.show();
 
             document.getElementById("start-date").value = arg.startStr.split(/[T,\+]/)[0];
-            document.getElementById("start-time").value = arg.startStr.split(/[T,\+]/)[1].slice(0, 5);
+            if (arg.startStr.split(/[T,\+]/)[1]) {
+                document.getElementById("start-time").value = arg.startStr.split(/[T,\+]/)[1].slice(0, 5);
+            }
             document.getElementById("end-date").value = arg.endStr.split(/[T,\+]/)[0];
-            document.getElementById("end-time").value = arg.endStr.split(/[T,\+]/)[1].slice(0, 5);
+            if (arg.endStr.split(/[T,\+]/)[1]) {
+                document.getElementById("end-time").value = arg.endStr.split(/[T,\+]/)[1].slice(0, 5);
+            }
 
             calendar.unselect()
         },
