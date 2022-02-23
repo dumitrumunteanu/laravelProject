@@ -1,3 +1,6 @@
+import * as bootstrap from "bootstrap";
+window.bootstrap = bootstrap;
+
 window._ = require('lodash');
 
 try {
