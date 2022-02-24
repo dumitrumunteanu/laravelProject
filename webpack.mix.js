@@ -17,3 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.js('resources/js/calendarUI.js', 'public/js')
     .postCss('resources/css/calendarUI.css', 'public/css');
+
+mix.js('resources/js/blog/blog.js', 'public/js/blog');

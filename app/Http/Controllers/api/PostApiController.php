@@ -7,6 +7,7 @@ use App\Http\Request\api\ArticleUpdateRequest;
 use App\Models\Post;
 use Illuminate\Routing\ResponseFactory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PostApiController extends Controller {
     private $responseFactory;
@@ -16,7 +17,11 @@ class PostApiController extends Controller {
     }
 
     public function readMostPopularArticles() {
-        $mostPopularPosts = Post::withCount('comments')->orderBy('comments_count', 'DESC')->limit(10)->get();
+        $mostPopularPosts = Post::withCount(['comments AS commentsCount'])->orderBy('commentsCount', 'DESC')->limit(6)->get();
+
+        foreach ($mostPopularPosts as $post) {
+            $post->description = Str::limit($post->description, 100);
+        }
 
         return $this->responseFactory->json($mostPopularPosts);
     }
