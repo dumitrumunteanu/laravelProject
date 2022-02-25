@@ -35,8 +35,8 @@ Route::post('/blog/new/submit', [PostController::class, 'store'])->name('post.su
 Route::post('/blog/{id}', [CommentController::class, 'store'])->where('id', '[0-9]+')->name('comment.add');
 
 Route::get('/courses', [CourseController::class, 'index'])->name('courses');
-Route::post('/courses/new', [CourseController::class, 'store'])->name('course.create')->middleware('auth');
 Route::get('/courses/{id?}', [CourseController::class, 'showCourse'])->where('id', '[0-9]+')->name('course.show')->middleware('auth');
+Route::post('/courses/new', [CourseController::class, 'store'])->name('course.create')->middleware('auth');
 Route::post('/course/{courseId}/remove-user/{userId}', [CourseController::class, 'removeUser'])->name('course.unenrollUser')->middleware('auth');
 
 Route::post('/courses/{id}/new-task', [TaskController::class, 'store'])->where('id', '[0-9]+')->name('task.create');

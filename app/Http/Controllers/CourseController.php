@@ -40,8 +40,6 @@ class CourseController extends Controller {
             'text' => $searchText,
         ]);
 
-        session()->flashInput($request);
-
         return view('courses.courses', ['courses' => $courses]);
     }
 
@@ -50,7 +48,7 @@ class CourseController extends Controller {
 
         $creator->addCourse($data);
 
-        return redirect()->route('courses')->with('status', 'Course created successfully!');
+        return redirect()->route('courses')->withInput($data)->with('status', 'Course created successfully!');
     }
 
     public function showCourse($id, Request $request, ModelLogger $logger) {
