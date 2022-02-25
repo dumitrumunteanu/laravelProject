@@ -29,12 +29,12 @@
             <div class="accordion-item border shadow">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#enrolled-list" aria-expanded="false" aria-controls="enrolled-list">
-                        Enrolled Students List
+                        Course Users List
                     </button>
                 </h2>
                 <div id="enrolled-list" class="accordion-collapse collapse" aria-labelledby="heading" data-bs-parent="#accordion-enrolled">
                     <div class="accordion-body">
-                        List enrolled student here
+                        @include('courses.enrolled')
                     </div>
                 </div>
             </div>

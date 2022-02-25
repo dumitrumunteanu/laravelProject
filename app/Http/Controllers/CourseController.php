@@ -6,6 +6,7 @@ use App\Http\Request\CourseRequest;
 use App\Models\Course;
 use App\Services\CourseCreator;
 use App\Services\ModelLogger;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,11 +62,19 @@ class CourseController extends Controller {
             return redirect(route('courses'));
         }
 
+        $enrolledUsers = $course->users;
+
         $tasks = $course->tasks()->orderBy('date_due', 'DESC')->get();
 
         return view('courses.course_details', [
             'course' => $course,
+            'enrolledUsers' => $enrolledUsers,
             'tasks' => $tasks,
         ]);
+    }
+
+    public function removeUser($courseId, $userId) {
+        Course::findOrFail($courseId)->users()->detach($userId);
+        return redirect()->route('course.show', $courseId)->with('status', 'User removed successfully!');
     }
 }
