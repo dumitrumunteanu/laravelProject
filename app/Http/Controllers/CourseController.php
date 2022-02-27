@@ -48,6 +48,8 @@ class CourseController extends Controller {
 
         $creator->addCourse($data);
 
+        $data = [];
+
         return redirect()->route('courses')->withInput($data)->with('status', 'Course created successfully!');
     }
 
