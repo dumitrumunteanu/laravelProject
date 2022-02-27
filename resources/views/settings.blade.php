@@ -8,9 +8,10 @@
 
     <div class="container">
         <div class="row row-cols-2">
-            <div class="col-5 col-sm-4 col-md-3 col-lg-2">
-                <h6 class="h6">Profile Picture</h6>
-                <img src="{{ asset('storage/profile_img/' . Auth::user()->image) }}" alt="profile picture" width="150px" height="150px" class="rounded-circle border border-primary border-3 shadow">
+            <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center">
+                <h5 class="h5">Profile Picture</h5>
+                <img id="profile-image" src="{{ asset('storage/profile_img/' . Auth::user()->image) }}" alt="profile picture" width="150px" height="150px" class="rounded-circle border border-primary border-3 shadow">
+                <h5 id="preview-text" class="fw-bold h5" hidden>Preview</h5>
             </div>
 
             <form id="profileImage" name="profileImage" class="mt-md-4" method="POST" action="{{ route('update.profile') }}" enctype="multipart/form-data">
@@ -35,4 +36,6 @@
     </div>
 
     @include('components.toast')
+
+    <script src="{{ asset('js/settings/settings.js') }}"></script>
 @endsection
