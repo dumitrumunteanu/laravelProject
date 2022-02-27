@@ -40,6 +40,7 @@ Route::post('/courses/new', [CourseController::class, 'store'])->name('course.cr
 Route::post('/course/{courseId}/remove-user/{userId}', [CourseController::class, 'removeUser'])->name('course.unenrollUser')->middleware('auth');
 
 Route::post('/courses/{id}/new-task', [TaskController::class, 'store'])->where('id', '[0-9]+')->name('task.create');
+Route::post('/courses/{courseId?}/remove-task/{taskId}', [TaskController::class, 'delete'])->name('task.delete');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send')->middleware('log.activity:sendContactUs');

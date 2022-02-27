@@ -117,6 +117,14 @@
         </div>
     </div>
 
+    @if(sizeof($tasks) > 0)
+        @include('courses.task_remove_confirmation_modal')
+    @else
+        <div class="container my-5">
+            <h3 class="text-muted text-center">No tasks yet!</h3>
+        </div>
+    @endif
+
     @include('components.toast')
 
     @if ($errors->any())
